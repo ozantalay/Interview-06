@@ -1,3 +1,4 @@
+import './styles.css'
 import React, { useState } from "react";
 
 const QUESTIONS = [
@@ -49,6 +50,56 @@ function App() {
 
 const Quiz = ({ questions }) => {
   // KODUNUZ BURAYA GELECEK
+
+  const[score,setScore]=useState(0)
+  const[questionIndex,setQuestionIndex]=useState(0)
+  const[selectedAnswer,setSelectedAnswer]=useState(null)
+  const [isQuizFinished, setIsQuizFinished] = useState(false);
+
+  const handleAnswer=(index)=>{
+    setSelectedAnswer(index)
+
+    if(index===questions[questionIndex].correct){
+      setScore(score+1)
+    }
+    setTimeout(() => {
+      const nextQuestion = questionIndex + 1;
+      if (nextQuestion < questions.length) {
+        setQuestionIndex(nextQuestion);
+        setSelectedAnswer(null); 
+      } else {
+        setIsQuizFinished(true);
+      }
+    }, 1000); 
+  };
+
+  const currentQuestion = questions[questionIndex];
+  return (
+    <div className='App'>
+
+
+    <h2>{currentQuestion.question}</h2>
+      <div className='answer'>
+      <ul>
+        {currentQuestion.answers.map((answer, index) => (
+          <li key={index}>
+            <button onClick={() => handleAnswer(index)}
+              style={{
+                backgroundColor:
+                  selectedAnswer === index
+                    ? index === currentQuestion.correct
+                      ? "green"
+                      : "red"
+                    : ""
+              }}>
+              {answer}
+            </button>
+          </li>
+        ))}
+      </ul>
+        </div>
+    </div>
+  );
 };
 
 export default App;

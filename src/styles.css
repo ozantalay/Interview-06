@@ -1,4 +1,29 @@
 .App {
   font-family: sans-serif;
   text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  
+  
+
+}
+.answer{
+  display: flex;
+  flex-direction: column;
+ 
+  border: 0px solid red;
+  
+}
+
+.answer li{
+  width: 200px;
+  background-color: orange;
+  margin:5px;
+  cursor: pointer;
+  display: block;
+}
+.answer button{
+  width: 100%;
 }
