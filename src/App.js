@@ -71,12 +71,22 @@ const Quiz = ({ questions }) => {
         setIsQuizFinished(true);
       }
     }, 1000); 
-  };
+  }
+  if (isQuizFinished) {
+    return (
+      <div className="App">
+        <h2>Quiz Bitti!</h2>
+        <p>Skorunuz: {score} / {questions.length}</p>
+      </div>
+    );
+  }
 
   const currentQuestion = questions[questionIndex];
   return (
     <div className='App'>
 
+
+  
 
     <h2>{currentQuestion.question}</h2>
       <div className='answer'>
@@ -86,17 +96,18 @@ const Quiz = ({ questions }) => {
             <button onClick={() => handleAnswer(index)}
               style={{
                 backgroundColor:
-                  selectedAnswer === index
-                    ? index === currentQuestion.correct
-                      ? "green"
-                      : "red"
-                    : ""
+                selectedAnswer === index
+                ? index === currentQuestion.correct
+                ? "green"
+                : "red"
+                : ""
               }}>
               {answer}
             </button>
           </li>
         ))}
       </ul>
+      
         </div>
     </div>
   );
